@@ -112,26 +112,22 @@
         </form>
     </section>
     <section class="content" #content id="content">
-        <h1>
+        <h1 style="text-align: center; border-bottom: 1px solid grey;">
             OFFER LETTER
         </h1>
         <b> {{offerLetterForm.value.date | date}} </b> <br><br>
         
-        <b> {{offerLetterForm.value.name || 'Candidate Name'}} </b> <br>
-        {{offerLetterForm.value.address || 'Address Line 1'}} <br>
-        {{offerLetterForm.value.address1 || 'Address Line 2'}} <br>
-        {{offerLetterForm.value.address2 || 'Address Line 3'}} <br> <br>
+        <b> {{offerLetterForm.value.name  || 'Candidate Name'  | titlecase}} </b> <br>
+        {{offerLetterForm.value.address || 'Address Line 1'  | titlecase}} <br>
+        {{offerLetterForm.value.address1 || 'Address Line 2'  | titlecase}} <br>
+        {{offerLetterForm.value.address2 || 'Address Line 3'  | titlecase}} <br> <br>
 
         {{offerLetterForm.value.email || 'email@example.com'}} <br>
         {{offerLetterForm.value.phone || '+91-9999999999'}} <br><br>
 
 
 
-        <b> Dear {{offerLetterForm.value.name || 'Candidate Name'}},</b> <br><br>
-
-        Sub: Offer of Employment - Company Name<br><br>
-
-
+        <b> Dear {{offerLetterForm.value.name || 'Candidate Name'  | titlecase}},</b> <br><br>
 
         With reference to your application and the subsequent interview you had with us, we are pleased to offer you a position of Full Stack Developer in our Company at a total compensation of <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-0'}} /- </b> {{inWords(offerLetterForm.value.ctcAnnual) | titlecase}} Rupees Only <br><br>
 
