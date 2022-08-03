@@ -137,8 +137,7 @@ export class OfferComponent implements OnInit {
     return doc;
   }
 
-  downloadPDF() {
-    
+  async downloadPDF() {
     this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 10px; width: 530px;";
 
     let pdf = new jsPDF("p", "pt", "a4");
@@ -150,6 +149,30 @@ export class OfferComponent implements OnInit {
         pdf.save('sample.pdf')
         this.el.nativeElement.style = "";
       }
+    });
+
+    // Saving Data to DB
+    let data = this.offerLetterForm.value;
+    let location = window.location.href
+    data['location'] = location
+    this.saveData(data);
+  }
+
+  saveData(data:any) {
+    let url = 'https://offer-letter-generator.herokuapp.com/'
+
+    fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
   }
 
