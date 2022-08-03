@@ -103,9 +103,24 @@ export class OfferComponent implements OnInit {
     console.log("Button Clicked")
   }
 
+
+  addWaterMark(doc:any) {
+    var totalPages = doc.internal.getNumberOfPages();
+  
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+      //doc.addImage(imgData, 'PNG', 40, 40, 75, 75);
+      doc.setTextColor(150);
+      doc.text(50, doc.internal.pageSize.height - 30, '');
+    }
+  
+    return doc;
+  }
+
   downloadPDF() {
     
-    this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 12px;"
+    this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 12px; width: 530px;";
+
 
 
     let pdf = new jsPDF("p", "pt", "a4");
@@ -113,6 +128,7 @@ export class OfferComponent implements OnInit {
     pdf.html(this.el.nativeElement, {
       margin: [20, 0, 20 ,30],
       callback: (pdf) =>{
+        pdf = this.addWaterMark(pdf);
         pdf.save('sample.pdf')
         this.el.nativeElement.style = "";
       }
