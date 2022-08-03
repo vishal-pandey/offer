@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 @Component({
@@ -98,12 +96,6 @@ export class OfferComponent implements OnInit {
       return str;
   }
 
-  submitForm() {
-    console.log(this.offerLetterForm)
-    console.log("Button Clicked")
-  }
-
-
   addWaterMark(doc:any) {
     var totalPages = doc.internal.getNumberOfPages();
   
@@ -121,8 +113,6 @@ export class OfferComponent implements OnInit {
     
     this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 10px; width: 530px;";
 
-
-
     let pdf = new jsPDF("p", "pt", "a4");
 
     pdf.html(this.el.nativeElement, {
@@ -133,8 +123,6 @@ export class OfferComponent implements OnInit {
         this.el.nativeElement.style = "";
       }
     });
-
-
   }
 
 }
