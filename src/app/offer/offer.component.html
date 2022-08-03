@@ -1,0 +1,245 @@
+<section class="container">
+    <section class="input">
+        <h1>Fill the particulars</h1>
+        <form [formGroup]="offerLetterForm" (ngSubmit)="submitForm()">
+            <div class="input-container">
+                <label for="name">Name</label>
+                <input formControlName="name" />
+            </div>
+            <div class="input-container">
+                <label for="date">Date of generating offer letter</label>
+                <input formControlName="date" />
+            </div>
+            <div class="input-container">
+                <label for="address">Address Line 1</label>
+                <input formControlName="address" />
+            </div>
+            <div class="input-container">
+                <label for="address1">Address Line 2</label>
+                <input formControlName="address1" />
+            </div>
+            <div class="input-container">
+                <label for="address2">Address Line 3</label>
+                <input formControlName="address2" />
+            </div>
+            <div class="input-container">
+                <label for="email">Email</label>
+                <input formControlName="email" />
+            </div>
+            <div class="input-container">
+                <label for="phone">Phone Number</label>
+                <input formControlName="phone" />
+            </div>
+            <div class="input-container">
+                <label for="ctcAnnual">Annual CTC</label>
+                <input formControlName="ctcAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="joiningBonus">Joining Bonus</label>
+                <input formControlName="joiningBonus" />
+            </div>
+            <div class="input-container">
+                <label for="insurance">Insurance Amount</label>
+                <input formControlName="insurance" />
+            </div>
+            <div class="input-container">
+                <label for="joiningDate">Joining Date</label>
+                <input formControlName="joiningDate" />
+            </div>
+            <div class="input-container">
+                <label for="basicSalaryAnnual">Basic Salary Annual</label>
+                <input formControlName="basicSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="hraSalaryAnnual">HRA Annual</label>
+                <input formControlName="hraSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="taSalaryAnnual">Travelling Allowance Annual</label>
+                <input formControlName="taSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="maSalaryAnnual">Medical Allowance Annual</label>
+                <input formControlName="maSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="communicationSalaryAnnual">Communication Allowance Annual</label>
+                <input formControlName="communicationSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="pfSalaryAnnual">PF Annual</label>
+                <input formControlName="pfSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="basicSalaryMonthly">Basic Salary Monthly</label>
+                <input formControlName="basicSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="hraSalaryMonthly">HRA Monthly</label>
+                <input formControlName="hraSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="taSalaryMonthly">Travelling Allowance Monthly</label>
+                <input formControlName="taSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="maSalaryMonthly">Medical Allowance Monthly</label>
+                <input formControlName="maSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="communicationSalaryMonthly">Communication Allowance Monthly</label>
+                <input formControlName="communicationSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="pfSalaryMonthly">PF Monthly</label>
+                <input formControlName="pfSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="totalSalaryAnnual">Total Annual Salary</label>
+                <input formControlName="totalSalaryAnnual" />
+            </div>
+            <div class="input-container">
+                <label for="totalSalaryMonthly">Total Monthly Salary</label>
+                <input formControlName="totalSalaryMonthly" />
+            </div>
+            <div class="input-container">
+                <label for="grandTotalSalary">Grand Total Salary</label>
+                <input formControlName="grandTotalSalary" />
+            </div>
+
+            <br><br>
+            <button (click)="downloadPDF()" class="download-button">Download PDF</button>
+        </form>
+    </section>
+    <section class="content" #content id="content">
+        <h1>
+            PRIVATE AND CONFIDENTIAL
+        </h1>
+        <b> {{offerLetterForm.value.date}} </b> <br><br>
+        
+        <b> {{offerLetterForm.value.name || 'Candidate Name'}} </b> <br>
+        {{offerLetterForm.value.address || 'Address Line 1'}} <br>
+        {{offerLetterForm.value.address1 || 'Address Line 2'}} <br>
+        {{offerLetterForm.value.address2 || 'Address Line 3'}} <br> <br>
+
+        {{offerLetterForm.value.email || 'email@example.com'}} <br>
+        {{offerLetterForm.value.phone || '+91-9999999999'}} <br><br><br>
+
+
+
+        <b> Dear {{offerLetterForm.value.name || 'Candidate Name'}},</b> <br><br>
+
+        Sub: Offer of Employment - Company Name<br><br>
+
+
+
+        With reference to your application and the subsequent interview you had with us, we are pleased to offer you a position of Full Stack Developer in our Company at a total compensation of <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> {{inWords(offerLetterForm.value.ctcAnnual) | titlecase}} Rupees Only <br><br>
+
+
+
+        Monthly Compensation (annualized)Rs. <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> <br><br>
+
+        Total Compensation Rs. <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> <br><br>
+
+
+
+        <b> You will be paid Rupees {{offerLetterForm.value.joiningBonus | number : '1.0-3'}} /- Joining Bonus (This amount will have to be repaid in case you leave Company within 12 months of joining) .</b> <br><br>
+
+
+        You will be covered under the company's Individual Medical Insurance Policy with the coverage limit of Rs. <b> {{offerLetterForm.value.insurance | number : '1.0-3'}} /- </b>per annum. <br><br>
+
+
+
+        You are required to join us on or before <b> {{offerLetterForm.value.joiningDate}} </b> failing which this offer of employment shall automatically lapse. Your formal appointment letter/agreement will be issued to you on the day of your joining our Company. <br><br>
+
+
+
+        On the date of your joining, you may please bring along the following (in ORIGINAL) <br>
+
+        <ol>
+            <li>Your duly accepted resignation letter/relieving letter from previous employment</li>
+            <li>Previous experience certificates.</li>
+            <li>Copies of Certificates/ Diplomas / Degrees of Educational Qualifications. (Std. X, Std. XII, Graduation and Post-Graduation).</li>
+            <li>Last 4 Months' Pay Slip (if applicable)</li>
+            <li>Proof of Date of Birth.</li>
+            <li>Proof of Current Address</li>
+            <li>PAN Card</li>
+            <li>Copy of latest valid Passport</li>
+            <li>Two Passport size photographs</li>
+            <li>Banking details for online salary deposit (Bank Name, Branch Name, Account No., IFSC code of the Branch</li>
+        </ol>
+        <br><br>
+        We look forward to a long and mutually beneficial association. <br><br>
+
+        Kindly sign a copy of this letter and return to us in token of your acceptance of this offer. <br><br>
+
+
+        -------------------------------------- <br>
+        Sunder Pichai <br>
+        CEO, Google INC.
+
+        <h3>
+            DETAILS OF COMPENSATION
+        </h3>
+
+        <table>
+            <tr>
+                <th>#</th>
+                <th>PARTICULARS</th>
+                <th>YEAR WISE</th>
+                <th>MONTHLY</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Basic Salary</td>
+                <td>{{offerLetterForm.value.basicSalaryAnnual | number : '1.0-3'}}</td>
+                <td>{{offerLetterForm.value.basicSalaryMonthly | number : '1.0-3'}}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>HRA</td>
+                <td>{{offerLetterForm.value.hraSalaryAnnual | number : '1.0-3'}}</td>
+                <td>{{offerLetterForm.value.hraSalaryMonthly | number : '1.0-3'}}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Travel Allowance</td>
+                <td>{{offerLetterForm.value.taSalaryAnnual | number : '1.0-3'}}</td>
+                <td>{{offerLetterForm.value.taSalaryMonthly | number : '1.0-3'}}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Medical Allowance</td>
+                <td>{{offerLetterForm.value.maSalaryAnnual | number : '1.0-3'}}</td>
+                <td>{{offerLetterForm.value.maSalaryMonthly | number : '1.0-3'}}</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Communication Expenses</td>
+                <td>{{offerLetterForm.value.communicationSalaryAnnual | number : '1.0-3'}}</td>
+                <td>{{offerLetterForm.value.communicationSalaryMonthly | number : '1.0-3'}}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Provident Fund (As per the PF Act 1952)</td>
+                <td>{{offerLetterForm.value.pfSalaryAnnual | number : '1.0-3'}}</td>
+                <td>{{offerLetterForm.value.pfSalaryMonthly | number : '1.0-3'}}</td>
+            </tr>
+            <tr>
+                <td><b>TOTAL</b></td>
+                <td></td>
+                <td><b>{{offerLetterForm.value.totalSalaryAnnual | number : '1.0-3'}}</b></td>
+                <td><b>{{offerLetterForm.value.totalSalaryMonthly | number : '1.0-3'}}</b></td>
+            </tr>
+            <tr>
+                <td><b>GRAND TOTAL</b></td>
+                <td></td>
+                <td></td>
+                <td><b>{{offerLetterForm.value.grandTotalSalary | number : '1.0-3'}}</b></td>
+            </tr>
+        </table>
+        <br><br>
+
+        Candidate Name & Signature: ………………………...
+    </section>
+</section>
