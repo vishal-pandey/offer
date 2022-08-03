@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import jsPDF from 'jspdf';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-offer',
@@ -11,11 +12,38 @@ export class OfferComponent implements OnInit {
 
   @ViewChild('content', {static: false}) el!: ElementRef
 
-  constructor(private fb: FormBuilder) { }
+  isLoggedIn:boolean = false;
+
+  constructor(private fb: FormBuilder) {
+    let pwd:string = sessionStorage.getItem('pwd') || 'no-password-found'
+    if (pwd == 'b24331b1a138cde62aa1f679164fc62f') {
+      this.isLoggedIn = true;
+    }
+    console.log(this.isLoggedIn)
+  }
 
   name:string = 'Vishal Pandey';
   
   todayDate = new Date().toDateString();
+
+  email = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+
+  login() {
+    if(this.email.value == '' || this.password.value == ''){
+      alert('Please enter Email and Password')
+      return
+    }
+    let email = this.email.value;
+    let password = this.password.value || 'no-password-found';
+
+    if(email == 'test@gmail.com' && Md5.hashAsciiStr(password) == 'b24331b1a138cde62aa1f679164fc62f') {
+      sessionStorage.setItem('pwd', Md5.hashAsciiStr(password));
+      this.isLoggedIn = true;
+    } else {
+      alert("Wrong Email Or Password")
+    }
+  }
 
   offerLetterForm: FormGroup = this.fb.group({
     name: [''],

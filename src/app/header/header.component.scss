@@ -7,4 +7,12 @@ header{
     background-color: teal;
     color: white;
     font-size: 20px;
+    position: relative;
+}
+
+.logout-button{
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 10px;
 }

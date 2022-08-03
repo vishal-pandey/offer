@@ -4,8 +4,8 @@ import { OfferComponent } from './offer/offer.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
-  {
-		path:"",
+	{
+		path: "",
 		component: OfferComponent
 	},
 	{
@@ -15,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
