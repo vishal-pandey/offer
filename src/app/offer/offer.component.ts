@@ -105,7 +105,7 @@ export class OfferComponent implements OnInit {
 
   downloadPDF() {
     
-    this.el.nativeElement.style = "height: auto; background-color: white; border-left: none;"
+    this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 12px;"
 
 
     let pdf = new jsPDF("p", "pt", "a4");
