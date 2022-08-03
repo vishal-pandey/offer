@@ -113,7 +113,7 @@
     </section>
     <section class="content" #content id="content">
         <h1>
-            PRIVATE AND CONFIDENTIAL
+            Offer Letter
         </h1>
         <b> {{offerLetterForm.value.date | date}} </b> <br><br>
         
@@ -123,7 +123,7 @@
         {{offerLetterForm.value.address2 || 'Address Line 3'}} <br> <br>
 
         {{offerLetterForm.value.email || 'email@example.com'}} <br>
-        {{offerLetterForm.value.phone || '+91-9999999999'}} <br><br><br>
+        {{offerLetterForm.value.phone || '+91-9999999999'}} <br><br>
 
 
 
@@ -137,9 +137,9 @@
 
 
 
-        Monthly Compensation (annualized)Rs. <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> <br><br>
+        Monthly Compensation (annualized)Rs. <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> <br>
 
-        Total Compensation Rs. <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> <br><br>
+        Total Compensation Rs. <b> {{offerLetterForm.value.ctcAnnual | number : '1.0-3'}} /- </b> <br>
 
 
 
@@ -168,16 +168,22 @@
             <li>Two Passport size photographs</li>
             <li>Banking details for online salary deposit (Bank Name, Branch Name, Account No., IFSC code of the Branch</li>
         </ol>
-        <br><br>
-        We look forward to a long and mutually beneficial association. <br><br>
+        We look forward to a long and mutually beneficial association. <br>
 
         Kindly sign a copy of this letter and return to us in token of your acceptance of this offer. <br><br>
 
+        <span style="float: left;">
+            -------------------------------------- <br>
+            Sunder Pichai <br>
+            CEO, Google INC.
+        </span>
+            
+        <span style="float: right;">
+            -------------------------------------- <br> <br>
+            Candidate Name & Signature
+        </span>
 
-        -------------------------------------- <br>
-        Sunder Pichai <br>
-        CEO, Google INC.
-
+        <br><br><br>
         <h3>
             DETAILS OF COMPENSATION
         </h3>
@@ -238,8 +244,5 @@
                 <td><b>{{offerLetterForm.value.grandTotalSalary | number : '1.0-3'}}</b></td>
             </tr>
         </table>
-        <br><br>
-
-        Candidate Name & Signature: ………………………...
     </section>
 </section>

@@ -119,7 +119,7 @@ export class OfferComponent implements OnInit {
 
   downloadPDF() {
     
-    this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 12px; width: 530px;";
+    this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 10px; width: 530px;";
 
 
 
