@@ -8,7 +8,7 @@
             </div>
             <div class="input-container">
                 <label for="date">Date of generating offer letter</label>
-                <input formControlName="date" />
+                <input formControlName="date" type="date" />
             </div>
             <div class="input-container">
                 <label for="address">Address Line 1</label>
@@ -23,7 +23,7 @@
                 <input formControlName="address2" />
             </div>
             <div class="input-container">
-                <label for="email">Email</label>
+                <label for="email" type="email">Email</label>
                 <input formControlName="email" />
             </div>
             <div class="input-container">
@@ -32,79 +32,79 @@
             </div>
             <div class="input-container">
                 <label for="ctcAnnual">Annual CTC</label>
-                <input formControlName="ctcAnnual" />
+                <input formControlName="ctcAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="joiningBonus">Joining Bonus</label>
-                <input formControlName="joiningBonus" />
+                <input formControlName="joiningBonus" type="number" />
             </div>
             <div class="input-container">
                 <label for="insurance">Insurance Amount</label>
-                <input formControlName="insurance" />
+                <input formControlName="insurance" type="number" />
             </div>
             <div class="input-container">
                 <label for="joiningDate">Joining Date</label>
-                <input formControlName="joiningDate" />
+                <input formControlName="joiningDate" type="date" />
             </div>
             <div class="input-container">
                 <label for="basicSalaryAnnual">Basic Salary Annual</label>
-                <input formControlName="basicSalaryAnnual" />
+                <input formControlName="basicSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="hraSalaryAnnual">HRA Annual</label>
-                <input formControlName="hraSalaryAnnual" />
+                <input formControlName="hraSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="taSalaryAnnual">Travelling Allowance Annual</label>
-                <input formControlName="taSalaryAnnual" />
+                <input formControlName="taSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="maSalaryAnnual">Medical Allowance Annual</label>
-                <input formControlName="maSalaryAnnual" />
+                <input formControlName="maSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="communicationSalaryAnnual">Communication Allowance Annual</label>
-                <input formControlName="communicationSalaryAnnual" />
+                <input formControlName="communicationSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="pfSalaryAnnual">PF Annual</label>
-                <input formControlName="pfSalaryAnnual" />
+                <input formControlName="pfSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="basicSalaryMonthly">Basic Salary Monthly</label>
-                <input formControlName="basicSalaryMonthly" />
+                <input formControlName="basicSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="hraSalaryMonthly">HRA Monthly</label>
-                <input formControlName="hraSalaryMonthly" />
+                <input formControlName="hraSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="taSalaryMonthly">Travelling Allowance Monthly</label>
-                <input formControlName="taSalaryMonthly" />
+                <input formControlName="taSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="maSalaryMonthly">Medical Allowance Monthly</label>
-                <input formControlName="maSalaryMonthly" />
+                <input formControlName="maSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="communicationSalaryMonthly">Communication Allowance Monthly</label>
-                <input formControlName="communicationSalaryMonthly" />
+                <input formControlName="communicationSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="pfSalaryMonthly">PF Monthly</label>
-                <input formControlName="pfSalaryMonthly" />
+                <input formControlName="pfSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="totalSalaryAnnual">Total Annual Salary</label>
-                <input formControlName="totalSalaryAnnual" />
+                <input formControlName="totalSalaryAnnual" type="number" />
             </div>
             <div class="input-container">
                 <label for="totalSalaryMonthly">Total Monthly Salary</label>
-                <input formControlName="totalSalaryMonthly" />
+                <input formControlName="totalSalaryMonthly" type="number" />
             </div>
             <div class="input-container">
                 <label for="grandTotalSalary">Grand Total Salary</label>
-                <input formControlName="grandTotalSalary" />
+                <input formControlName="grandTotalSalary" type="number" />
             </div>
 
             <br><br>
@@ -115,7 +115,7 @@
         <h1>
             PRIVATE AND CONFIDENTIAL
         </h1>
-        <b> {{offerLetterForm.value.date}} </b> <br><br>
+        <b> {{offerLetterForm.value.date | date}} </b> <br><br>
         
         <b> {{offerLetterForm.value.name || 'Candidate Name'}} </b> <br>
         {{offerLetterForm.value.address || 'Address Line 1'}} <br>
@@ -150,7 +150,7 @@
 
 
 
-        You are required to join us on or before <b> {{offerLetterForm.value.joiningDate}} </b> failing which this offer of employment shall automatically lapse. Your formal appointment letter/agreement will be issued to you on the day of your joining our Company. <br><br>
+        You are required to join us on or before <b> {{offerLetterForm.value.joiningDate | date}} </b> failing which this offer of employment shall automatically lapse. Your formal appointment letter/agreement will be issued to you on the day of your joining our Company. <br><br>
 
 
 
