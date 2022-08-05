@@ -106,14 +106,14 @@
                 <label for="grandTotalSalary">Grand Total Salary</label>
                 <input formControlName="grandTotalSalary" type="number" />
             </div>
-
-            <br><br>
-            <button (click)="downloadPDF()" class="download-button">Download PDF</button>
+            <div class="input-container">
+                <button (click)="downloadPDF()" class="download-button">Download PDF</button>
+            </div>
         </form>
     </section>
     <section class="content" #content id="content">
         <h1 style="text-align: center; border-bottom: 1px solid grey;">
-            OFFER LETTER
+            Offer Letter
         </h1>
         <b> {{offerLetterForm.value.date | date}} </b> <br><br>
         
