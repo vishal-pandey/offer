@@ -1,4 +1,4 @@
-<section class="container" *ngIf="isLoggedIn">
+<section class="container" *ngIf="ms.isLoggedIn()">
     <section class="input">
         <h1>Fill the particulars</h1>
         <form [formGroup]="offerLetterForm">
@@ -243,7 +243,7 @@
     </section>
 </section>
 
-<section class="container logginForm-container" *ngIf="!isLoggedIn">
+<section class="container logginForm-container" *ngIf="!ms.isLoggedIn()">
     <form class="logginForm">
         <h2>Login</h2>
         <input type="email" [formControl]="email">

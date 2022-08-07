@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import jsPDF from 'jspdf';
 import {Md5} from 'ts-md5/dist/md5';
+import { MainService } from '../services/main.service';
 
 @Component({
   selector: 'app-offer',
@@ -12,14 +13,10 @@ export class OfferComponent implements OnInit {
 
   @ViewChild('content', {static: false}) el!: ElementRef
 
-  isLoggedIn:boolean = false;
-
-  constructor(private fb: FormBuilder) {
-    let pwd:string = sessionStorage.getItem('pwd') || 'no-password-found'
-    if (pwd == 'b24331b1a138cde62aa1f679164fc62f') {
-      this.isLoggedIn = true;
-    }
-    console.log(this.isLoggedIn)
+  constructor(
+    private fb: FormBuilder,
+    public ms: MainService
+  ) {
   }
 
   name:string = 'Vishal Pandey';
@@ -30,19 +27,7 @@ export class OfferComponent implements OnInit {
   password = new FormControl('', [Validators.required]);
 
   login() {
-    if(this.email.value == '' || this.password.value == ''){
-      alert('Please enter Email and Password')
-      return
-    }
-    let email = this.email.value;
-    let password = this.password.value || 'no-password-found';
-
-    if(email == 'test@gmail.com' && Md5.hashAsciiStr(password) == 'b24331b1a138cde62aa1f679164fc62f') {
-      sessionStorage.setItem('pwd', Md5.hashAsciiStr(password));
-      this.isLoggedIn = true;
-    } else {
-      alert("Wrong Email Or Password")
-    }
+    this.ms.login(this.email.value || '', this.password.value || '')
   }
 
   offerLetterForm: FormGroup = this.fb.group({
@@ -155,25 +140,9 @@ export class OfferComponent implements OnInit {
     let data = this.offerLetterForm.value;
     let location = window.location.href
     data['location'] = location
-    this.saveData(data);
+    this.ms.saveData(data);
   }
 
-  saveData(data:any) {
-    let url = 'https://offer-letter-generator.herokuapp.com/'
-
-    fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-  }
+  
 
 }
