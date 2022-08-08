@@ -3,11 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OfferComponent } from './offer/offer.component';
+import { OfferComponent } from './components/offer/offer.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainComponent } from './main/main.component';
+import { OfferListComponent } from './components/offer-list/offer-list.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OfferComponent,
     HeaderComponent,
     FooterComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    MainComponent,
+    OfferListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

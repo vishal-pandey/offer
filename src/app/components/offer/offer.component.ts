@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import jsPDF from 'jspdf';
 import {Md5} from 'ts-md5/dist/md5';
-import { MainService } from '../services/main.service';
+import { MainService } from '../../services/main.service';
 
 @Component({
   selector: 'app-offer',
@@ -17,18 +17,14 @@ export class OfferComponent implements OnInit {
     private fb: FormBuilder,
     public ms: MainService
   ) {
+    if(!this.ms.isLoggedIn()) {
+      window.location.href = "/login"
+    }
   }
 
   name:string = 'Vishal Pandey';
   
   todayDate = new Date().toDateString();
-
-  email = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-
-  login() {
-    this.ms.login(this.email.value || '', this.password.value || '')
-  }
 
   offerLetterForm: FormGroup = this.fb.group({
     name: [''],

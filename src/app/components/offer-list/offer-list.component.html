@@ -1,0 +1,18 @@
+<section class="offer-lists">
+    <h2>Offer Letters</h2>
+    <div class="search">
+        <input type="text" placeholder="Search">
+    </div>
+    <div class="offer" *ngFor="let offer of offers">
+        <span class="info">
+            {{offer.name}}
+        </span>
+        <span class="action">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </span>
+    </div>
+    <div class="new-offer">
+        <button class="create" routerLink="/offer">Create New Offer</button>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+@import "../../colors.scss";
+.container{
+    // background-color: red;
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: $N30;
+    .content{
+        padding: 15px;
+        width: 100%;
+        max-width: 1000px;
+    }
+}

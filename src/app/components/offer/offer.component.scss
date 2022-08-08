@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+@import "../../../colors.scss";
 .container{
     display: flex;
     align-items: center;
@@ -37,10 +37,11 @@
         input{
             width: 70%;
             height: 30px;
-            border: 1px solid rgba($color: #000000, $alpha: 0.2);
+            border: 0.1px solid $N50;
             // box-shadow: 1px 1px 1px 1px $N50;
             // border-top: ;
             background-color: $white;
+            outline: 0.1px solid $N50;
         }
         // border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
 
@@ -81,41 +82,5 @@
             padding: 2px 5px;
         }
         border-collapse: collapse;
-    }
-}
-
-
-
-.logginForm-container{
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    .logginForm{
-        // height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: column;
-        h2{
-            margin: 0;
-            font-family: 'Open Sans';
-        }
-        input{
-            width: 350px;
-            height: 30px;
-            border: 1px solid $N50;
-            margin: 10px;
-        }
-        button {
-            width: 350px;
-            height: 30px;
-            background-color: $B100;
-            border: 1px solid $B100;
-            color: white;
-            font-size: 14px;
-            margin: 10px;
-        }
     }
 }

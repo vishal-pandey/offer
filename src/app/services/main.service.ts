@@ -34,6 +34,7 @@ export class MainService {
 
     if(email == 'test@gmail.com' && Md5.hashAsciiStr(password) == 'b24331b1a138cde62aa1f679164fc62f') {
       sessionStorage.setItem('pwd', Md5.hashAsciiStr(password));
+      window.location.href = '/';
     } else {
       alert("Wrong Email Or Password")
     }
