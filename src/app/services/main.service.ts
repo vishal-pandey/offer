@@ -26,18 +26,37 @@ export class MainService {
     });
   }
 
-  login(email:string, password:string) {
+  async login(email:string, password:string) {
     if(email == '' || password == ''){
       alert('Please enter Email and Password')
       return
     }
 
-    if(email == 'test@gmail.com' && Md5.hashAsciiStr(password) == 'b24331b1a138cde62aa1f679164fc62f') {
-      sessionStorage.setItem('pwd', Md5.hashAsciiStr(password));
-      window.location.href = '/';
-    } else {
-      alert("Wrong Email Or Password")
-    }
+    let url = 'https://offer-letter-generator.herokuapp.com/login/';
+
+    await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify({email, password}) // body data type must match "Content-Type" header
+    })
+    .then(data => data.json())
+    .then((data)=>{
+      if(data.success){
+        sessionStorage.setItem('pwd', data.token);
+        window.location.href = '/';
+        return
+      }else{
+        alert(data.message)
+        return
+      }
+    });
   }
 
   logout() {
@@ -46,8 +65,8 @@ export class MainService {
   }
 
   isLoggedIn() {
-    let pwd:string = sessionStorage.getItem('pwd') || 'no-password-found'
-    if (pwd == 'b24331b1a138cde62aa1f679164fc62f') {
+    let pwd:any = sessionStorage.getItem('pwd');
+    if (pwd) {
       return true;
     } else {
       return false
