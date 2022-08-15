@@ -9,7 +9,8 @@ export class MainService {
   constructor() { }
 
   saveData(data:any) {
-    let url = 'https://offer-letter-generator.herokuapp.com/'
+    let url = 'https://offer-letter-generator.herokuapp.com/offer'
+    let token:any = this.getToken();
 
     fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -17,7 +18,8 @@ export class MainService {
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ token
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow', // manual, *follow, error
@@ -65,12 +67,17 @@ export class MainService {
   }
 
   isLoggedIn() {
-    let pwd:any = sessionStorage.getItem('pwd');
-    if (pwd) {
+    let token:any = sessionStorage.getItem('pwd');
+    if (token) {
       return true;
     } else {
       return false
     }
+  }
+  
+  getToken() {
+    let token:any = sessionStorage.getItem('pwd');
+    return token;
   }
 
 }
