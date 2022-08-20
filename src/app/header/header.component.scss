@@ -4,17 +4,23 @@ header{
     height: 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: $N200;
+    justify-content: flex-start;
+    background-color: $N10;
+    border-bottom: 1px solid $N30;
     color: $white;
     font-size: 20px;
     position: relative;
     font-family: 'Open Sans', sans-serif;
+    img{
+        margin-left: 50px;
+        height: 90%;
+    }
 }
 
 .logout-button{
     display: inline-block;
     position: absolute;
+    color: black;
     top: 12px;
     right: 10px;
 }
