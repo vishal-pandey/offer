@@ -10,8 +10,11 @@ export class OfferListComponent implements OnInit {
 
   offers:any = []
 
+  loading: boolean = true;
+
   constructor(private ms: MainService) {
     this.ms.getOffers().subscribe((data:any) => {
+      this.loading = false;
       if(data.success) {
         data.result.forEach((offer:any) =>{
           this.offers.push({

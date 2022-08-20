@@ -6,6 +6,7 @@
             <button class="create" routerLink="/offer">Create New Offer</button>
         </div>
     </div>
+    <app-loading style="width: 100%;" *ngIf="loading"></app-loading>
     <div class="offer" *ngFor="let offer of offers">
         <span class="info">
             {{offer.name}}

@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { OfferListComponent } from './components/offer-list/offer-list.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     NotfoundComponent,
     MainComponent,
     OfferListComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
