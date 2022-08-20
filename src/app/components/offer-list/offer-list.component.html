@@ -2,9 +2,6 @@
     <h2>Offer Letters</h2>
     <div class="search">
         <input type="text" placeholder="Search">
-        <div class="new-offer">
-            <button class="create" routerLink="/offer">Create New Offer</button>
-        </div>
     </div>
     <app-loading style="width: 100%;" *ngIf="loading"></app-loading>
     <div class="offer" *ngFor="let offer of offers">
@@ -15,5 +12,8 @@
             <button class="edit" (click)="edit(offer._id)">Edit</button>
             <button class="delete">Delete</button>
         </span>
+    </div>
+    <div class="new-offer">
+        <button class="create" routerLink="/offer">Create New Offer</button>
     </div>
 </section>
