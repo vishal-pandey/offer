@@ -32,8 +32,8 @@ export class MainService {
     });
   }
 
-  getOffers() {
-    let url = 'https://offer-letter-generator.herokuapp.com/offer'
+  getOffers(offerId:any = "") {
+    let url = 'https://offer-letter-generator.herokuapp.com/offer/'+offerId
     let token:any = this.getToken();
 
 
@@ -47,22 +47,6 @@ export class MainService {
     let d;
 
     return this.http.get(url, httpOptions);
-
-    fetch(url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ token
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      }
-    }).then(res => res.json()).then(data => {
-      console.log(data);
-      d = data;
-    });
-
-    return d
-
-    // return await response.json();
   }
 
   async login(email:string, password:string) {

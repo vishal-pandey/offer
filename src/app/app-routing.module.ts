@@ -19,6 +19,10 @@ const routes: Routes = [
 		component: OfferComponent
 	},
 	{
+		path: "offer/:id",
+		component: OfferComponent
+	},
+	{
 		path: '**',
 		component: NotfoundComponent
 	}

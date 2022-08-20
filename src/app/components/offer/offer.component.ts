@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import jsPDF from 'jspdf';
 import {Md5} from 'ts-md5/dist/md5';
 import { MainService } from '../../services/main.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-offer',
@@ -15,13 +16,17 @@ export class OfferComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public ms: MainService
+    public ms: MainService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     if(!this.ms.isLoggedIn()) {
       window.location.href = "/login"
     }
   }
 
+  offerId:any = null;
+  loading:boolean = false;
   name:string = 'Vishal Pandey';
   
   todayDate = new Date().toDateString();
@@ -59,6 +64,19 @@ export class OfferComponent implements OnInit {
   })
 
   ngOnInit(): void {
+
+    this.offerId = this.route.snapshot.paramMap.get('id');
+    if(this.offerId) {
+      this.loading = true;
+      this.ms.getOffers(this.offerId).subscribe((data:any) => {
+        if(data.success) {
+          let theData = data.result[0];
+          this.offerLetterForm.patchValue(theData)
+          this.loading = false;
+        }
+      })
+    }
+
     this.offerLetterForm.get('ctcAnnual')?.valueChanges.subscribe((val) => {
       let ctcAnnual = parseInt(val)
       let ctcMontly = ctcAnnual/12

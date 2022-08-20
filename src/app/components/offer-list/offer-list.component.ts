@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/services/main.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-offer-list',
@@ -12,7 +13,7 @@ export class OfferListComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private ms: MainService) {
+  constructor(private ms: MainService, private router: Router) {
     this.ms.getOffers().subscribe((data:any) => {
       this.loading = false;
       if(data.success) {
@@ -20,7 +21,8 @@ export class OfferListComponent implements OnInit {
           this.offers.push({
             "name": offer.name,
             "email": offer.email,
-            "date": offer.date
+            "date": offer.date,
+            "_id": offer._id
           })
         })
       }
@@ -29,6 +31,12 @@ export class OfferListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  edit(offerId:string) {
+    this.router.navigate(
+      ['/offer/'+offerId]
+    );
   }
 
 }
