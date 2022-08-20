@@ -28,6 +28,22 @@ export class MainService {
     });
   }
 
+  async getOffers() {
+    let url = 'https://offer-letter-generator.herokuapp.com/offer'
+    let token:any = this.getToken();
+
+    let response = await fetch(url, {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ token
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    });
+
+    return await response.json();
+  }
+
   async login(email:string, password:string) {
     if(email == '' || password == ''){
       alert('Please enter Email and Password')
