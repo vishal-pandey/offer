@@ -8,49 +8,24 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class OfferListComponent implements OnInit {
 
+  offers:any = []
+
   constructor(private ms: MainService) {
-    console.log(ms.getOffers());
+    this.ms.getOffers().subscribe((data:any) => {
+      if(data.success) {
+        data.result.forEach((offer:any) =>{
+          this.offers.push({
+            "name": offer.name,
+            "email": offer.email,
+            "date": offer.date
+          })
+        })
+      }
+      console.log(data)
+  });
   }
 
   ngOnInit(): void {
   }
-
-  offers = [
-    {
-      "name": "Vishal Pandey",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    },
-    {
-      "name": "Radhey Shyam",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    },
-    {
-      "name": "Mohan Singh",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    },
-    {
-      "name": "Roshan Kumar",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    },
-    {
-      "name": "Yola solll",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    },
-    {
-      "name": "Lorem Ipsum",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    },
-    {
-      "name": "Ipsum Lorem",
-      "email": "contact@email.com",
-      "date": "8th August 2022"
-    }
-  ]
 
 }

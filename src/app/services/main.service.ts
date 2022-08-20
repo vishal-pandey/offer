@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Md5 } from 'ts-md5';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   saveData(data:any) {
     let url = 'https://offer-letter-generator.herokuapp.com/offer'
@@ -28,20 +32,37 @@ export class MainService {
     });
   }
 
-  async getOffers() {
+  getOffers() {
     let url = 'https://offer-letter-generator.herokuapp.com/offer'
     let token:any = this.getToken();
 
-    let response = await fetch(url, {
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Bearer '+ token
+      })
+    };
+
+    let d;
+
+    return this.http.get(url, httpOptions);
+
+    fetch(url, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+ token
         // 'Content-Type': 'application/x-www-form-urlencoded',
       }
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      d = data;
     });
 
-    return await response.json();
+    return d
+
+    // return await response.json();
   }
 
   async login(email:string, password:string) {
