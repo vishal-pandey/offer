@@ -160,7 +160,12 @@ export class OfferComponent implements OnInit {
     if(data["_id"] == ""){
       delete data._id
     }
-    this.ms.saveData(data);
+    this.ms.saveData(data).subscribe((res:any) => {
+      if(res.success) {
+        let offerId = res.result.insertedId
+        this.offerLetterForm.get('_id')?.setValue(offerId);
+      }
+    });
   }
 
   

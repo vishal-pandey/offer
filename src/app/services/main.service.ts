@@ -13,18 +13,17 @@ export class MainService {
   constructor(private http: HttpClient) { }
 
   saveData(data:any) {
-    let url = 'https://offer-letter-generator.herokuapp.com/offer'
+    let url = 'https://offer-letter-generator.herokuapp.com/offer/'
     let token:any = this.getToken();
 
-    fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ token
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Bearer '+ token
+      })
+    };
+
+    return this.http.post(url, JSON.stringify(data), httpOptions);
   }
 
   getOffers(offerId:any = "") {
@@ -38,8 +37,6 @@ export class MainService {
         Authorization: 'Bearer '+ token
       })
     };
-
-    let d;
 
     return this.http.get(url, httpOptions);
   }
