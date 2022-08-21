@@ -32,7 +32,9 @@ export class OfferListComponent implements OnInit {
       this.ms.deleteOffers(offerId).subscribe((data: any) => {
         if (data.success) {
           this.fetchData()
-          alert("Offer Letter Deleted Successufully")
+          // alert("Offer Letter Deleted Successufully")
+        } else {
+          alert("Error deleting offer")
         }
       })
     }

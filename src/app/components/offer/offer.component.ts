@@ -60,7 +60,8 @@ export class OfferComponent implements OnInit {
 
     totalSalaryAnnual: [''],
     totalSalaryMonthly: [''],
-    grandTotalSalary: ['']
+    grandTotalSalary: [''],
+    _id: ['']
   })
 
   ngOnInit(): void {
@@ -68,7 +69,9 @@ export class OfferComponent implements OnInit {
     this.offerId = this.route.snapshot.paramMap.get('id');
     if(this.offerId) {
       this.loading = true;
+      console.log(this.offerId)
       this.ms.getOffers(this.offerId).subscribe((data:any) => {
+        console.log(data);
         if(data.success) {
           let theData = data.result[0];
           this.offerLetterForm.patchValue(theData)
@@ -154,6 +157,9 @@ export class OfferComponent implements OnInit {
     let data = this.offerLetterForm.value;
     let location = window.location.href
     data['location'] = location
+    if(data["_id"] == ""){
+      delete data._id
+    }
     this.ms.saveData(data);
   }
 
