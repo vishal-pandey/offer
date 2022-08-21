@@ -1,5 +1,5 @@
 cp docs/CNAME ./
-ng build --base-href ./
+ng build --base-href /
 cp docs/index.html docs/404.html
 cp ./CNAME docs/
 rm ./CNAME
