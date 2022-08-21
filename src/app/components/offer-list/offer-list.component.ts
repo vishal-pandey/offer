@@ -9,15 +9,41 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class OfferListComponent implements OnInit {
 
-  offers:any = []
+  offers: any = []
 
   loading: boolean = true;
 
   constructor(private ms: MainService, private router: Router) {
-    this.ms.getOffers().subscribe((data:any) => {
+    this.fetchData();
+  }
+
+  ngOnInit(): void {
+  }
+
+  edit(offerId: string) {
+    this.router.navigate(
+      ['/offer/' + offerId]
+    );
+  }
+
+  delete(offerId: string, name: string) {
+    if (confirm('Are you sure you want to delete this offer of ' + name)) {
+      this.loading = true
+      this.ms.deleteOffers(offerId).subscribe((data: any) => {
+        if (data.success) {
+          this.fetchData()
+          alert("Offer Letter Deleted Successufully")
+        }
+      })
+    }
+  }
+
+  fetchData() {
+    this.ms.getOffers().subscribe((data: any) => {
       this.loading = false;
-      if(data.success) {
-        data.result.forEach((offer:any) =>{
+      if (data.success) {
+        this.offers = [];
+        data.result.forEach((offer: any) => {
           this.offers.push({
             "name": offer.name,
             "email": offer.email,
@@ -26,17 +52,7 @@ export class OfferListComponent implements OnInit {
           })
         })
       }
-      console.log(data)
-  });
-  }
-
-  ngOnInit(): void {
-  }
-
-  edit(offerId:string) {
-    this.router.navigate(
-      ['/offer/'+offerId]
-    );
+    });
   }
 
 }

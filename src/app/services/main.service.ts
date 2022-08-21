@@ -49,6 +49,24 @@ export class MainService {
     return this.http.get(url, httpOptions);
   }
 
+  deleteOffers(offerId:any = "") {
+    let url = 'https://offer-letter-generator.herokuapp.com/offer/'+offerId
+    let token:any = this.getToken();
+
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Bearer '+ token
+      })
+    };
+
+    let d;
+
+    return this.http.delete(url, httpOptions);
+  }
+  
+
   async login(email:string, password:string) {
     if(email == '' || password == ''){
       alert('Please enter Email and Password')
