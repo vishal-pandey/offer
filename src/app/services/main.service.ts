@@ -27,8 +27,7 @@ export class MainService {
   }
 
   sendPDF(data:any) {
-    console.log("Inside Main Service \n\n\n\n")
-    let url = 'http://localhost:3000/pdf/'
+    let url = 'https://offer-letter-generator.herokuapp.com/pdf/'
     let token:any = this.getToken();
 
     let httpOptions = {
