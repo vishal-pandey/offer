@@ -46,6 +46,11 @@
         // border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
 
     }
+    .input-container.actions{
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
     .download-button{
         padding: 10px 15px;
         border-radius: 2px;
@@ -53,12 +58,14 @@
         background-color: $B100;
         color: white;
         display: inline;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 15px;
+        width: 150px;
+        // margin-left: auto;
+        // margin-right: auto;
     }
 }
 
-.content{
+.container .content{
     width: 60%;
     height: calc(100vh - 60px);
     background-color: $N10;
@@ -82,5 +89,81 @@
             padding: 2px 5px;
         }
         border-collapse: collapse;
+    }
+}
+
+.modal{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(111,111,111,0.8);
+    .body{
+        width: 500px;
+        height: 300px;
+        height: auto;
+        border: 1px solid $N30;
+        box-shadow: 2px 2px 10px rgb(80,80,80);
+        background-color: white;
+        padding: 15px 20px;
+        border-radius: 1%;
+
+        header{
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content{
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            .input-container{
+                width: 100%;
+                height: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                margin: 10px 0px;
+                // border: 1px solid black;
+                input{
+                    border-radius: 0;
+                    border: 1px solid $N50;
+                    width: 80%;
+                    outline: none;
+                    height: 30px;
+                    padding-left: 10px;
+                }
+                label{
+                    width: 80%;
+                }
+            }
+        }
+        footer{
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button{
+                padding: 10px 15px;
+                min-width: 150px;
+                border: 1px solid $N40;
+                margin: 5px;
+                background-color: $B100;
+                border-radius: 3px;
+                // background-color: red;
+            }
+        }
     }
 }

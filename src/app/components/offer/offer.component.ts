@@ -4,11 +4,32 @@ import jsPDF from 'jspdf';
 import {Md5} from 'ts-md5/dist/md5';
 import { MainService } from '../../services/main.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {style, state, animate, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-offer',
   templateUrl: './offer.component.html',
-  styleUrls: ['./offer.component.scss']
+  styleUrls: ['./offer.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({opacity:0}),
+        animate(300, style({opacity:1})) 
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(300, style({opacity:0})) 
+      ])
+    ]),
+    trigger('slideIn', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({marginTop:'100vh'}),
+        animate(100, style({marginTop: 0})) 
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(100, style({marginTop: '-100vh'})) 
+      ])
+    ])
+  ]
 })
 export class OfferComponent implements OnInit {
 
@@ -28,6 +49,7 @@ export class OfferComponent implements OnInit {
   offerId:any = null;
   loading:boolean = false;
   name:string = 'Vishal Pandey';
+  isModalOpen = false;
   
   todayDate = new Date().toDateString();
 
@@ -61,6 +83,12 @@ export class OfferComponent implements OnInit {
     totalSalaryAnnual: [''],
     totalSalaryMonthly: [''],
     grandTotalSalary: [''],
+    _id: ['']
+  })
+
+  sendMailForm: FormGroup = this.fb.group({
+    employeeEmail: [''],
+    ccEmails: [''],
     _id: ['']
   })
 
@@ -166,6 +194,16 @@ export class OfferComponent implements OnInit {
         this.offerLetterForm.get('_id')?.setValue(offerId);
       }
     });
+  }
+
+  openModal() {
+    let employeeEmail = this.offerLetterForm.get("email")?.value
+    this.sendMailForm.get("employeeEmail")?.setValue(employeeEmail)
+    this.isModalOpen = true
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
   

@@ -107,8 +107,9 @@
                 <label for="grandTotalSalary">Grand Total Salary</label>
                 <input formControlName="grandTotalSalary" type="number" />
             </div>
-            <div class="input-container">
+            <div class="input-container actions">
                 <button (click)="downloadPDF()" class="download-button">Download PDF</button>
+                <button class="sendMail download-button" (click)="openModal()">Send Mail</button>
             </div>
         </form>
     </section>
@@ -241,5 +242,26 @@
                 <td><b>{{offerLetterForm.value.grandTotalSalary | number : '1.0-0'}}</b></td>
             </tr>
         </table>
+    </section>
+</section>
+
+<section class="modal" *ngIf="isModalOpen" [@slideIn]>
+    <section class="body">
+        <header>Send offer letter to employee on their E-Mail</header>
+        <section class="content" [formGroup]="sendMailForm">
+            <div class="input-container">
+                <label>Employee Email</label>
+                <input formControlName="grandTotalSalary" formControlName="employeeEmail"/>
+            </div>
+            <div class="input-container">
+                <label>Mails to CC comma separated</label>
+                <input formControlName="grandTotalSalary" />
+            </div>
+            
+        </section>
+        <footer>
+            <button (click)="downloadPDF()">Send</button>
+            <button (click)="closeModal()">Cancel</button>
+        </footer>
     </section>
 </section>
