@@ -250,17 +250,17 @@
         <header>Send offer letter to employee on their E-Mail</header>
         <section class="content" [formGroup]="sendMailForm">
             <div class="input-container">
-                <label>Employee Email</label>
-                <input formControlName="grandTotalSalary" formControlName="employeeEmail"/>
+                <label>To (Employee Email)</label>
+                <input formControlName="employeeEmail"/>
             </div>
             <div class="input-container">
-                <label>Mails to CC comma separated</label>
-                <input formControlName="grandTotalSalary" />
+                <label>CC (Your Emails, comma separated)</label>
+                <input formControlName="ccEmails"/>
             </div>
             
         </section>
         <footer>
-            <button (click)="downloadPDF()">Send</button>
+            <button (click)="downloadPDF(true)">Send</button>
             <button (click)="closeModal()">Cancel</button>
         </footer>
     </section>

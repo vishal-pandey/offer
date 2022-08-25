@@ -89,7 +89,7 @@ export class OfferComponent implements OnInit {
   sendMailForm: FormGroup = this.fb.group({
     employeeEmail: [''],
     ccEmails: [''],
-    _id: ['']
+    name: [''],
   })
 
   ngOnInit(): void {
@@ -167,16 +167,33 @@ export class OfferComponent implements OnInit {
     return doc;
   }
 
-  async downloadPDF() {
+  async downloadPDF(sendPDF = false) {
     this.el.nativeElement.style = "height: auto; background-color: white; border-left: none; font-size: 10px; width: 530px; padding: 0px;";
 
     let pdf = new jsPDF("p", "pt", "a4");
+
+    let name = this.offerLetterForm.get('name')?.value
+    let fileName = name+'_Offer_Letter.pdf'
 
     pdf.html(this.el.nativeElement, {
       margin: [20, 0, 20 ,30],
       callback: (pdf) =>{
         pdf = this.addWaterMark(pdf);
-        pdf.save('sample.pdf')
+        if(sendPDF) {
+          console.log("Getting up to here")
+          let mailData = this.sendMailForm.value
+          let d = new FormData()
+          d.append('data', pdf.output());
+          d.append('mailData', JSON.stringify(mailData));
+          this.ms.sendPDF(d).subscribe((data:any)=>{
+            if(data.success) {
+              alert("Offer letter sent through mail successfully!!")
+            }
+            this.closeModal()
+          })
+        } else {
+          pdf.save(fileName)
+        }
         this.el.nativeElement.style = "";
       }
     });
@@ -198,7 +215,9 @@ export class OfferComponent implements OnInit {
 
   openModal() {
     let employeeEmail = this.offerLetterForm.get("email")?.value
+    let employeeName = this.offerLetterForm.get("name")?.value
     this.sendMailForm.get("employeeEmail")?.setValue(employeeEmail)
+    this.sendMailForm.get("name")?.setValue(employeeName)
     this.isModalOpen = true
   }
 

@@ -26,6 +26,22 @@ export class MainService {
     return this.http.post(url, JSON.stringify(data), httpOptions);
   }
 
+  sendPDF(data:any) {
+    console.log("Inside Main Service \n\n\n\n")
+    let url = 'http://localhost:3000/pdf/'
+    let token:any = this.getToken();
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+ token
+      })
+    };
+
+    console.log(data);
+
+    return this.http.post(url, data, httpOptions);
+  }
+
   getOffers(offerId:any = "") {
     let url = 'https://offer-letter-generator.herokuapp.com/offer/'+offerId
     let token:any = this.getToken();
