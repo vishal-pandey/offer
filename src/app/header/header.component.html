@@ -1,9 +1,10 @@
 <header>
-    <img src="https://www.hirel.in/hirel.png" alt="" height="100%" routerLink="/">
+    <img src="https://www.hirel.in/hirel.png" alt="" height="100%" *ngIf="!ms.isLoggedIn()" (click)="logoClick()">
+    <img src="https://www.hirel.in/hirel.png" alt="" height="100%" routerLink="/" *ngIf="ms.isLoggedIn()">
     <span (click)="ms.logout()" class="logout-button" *ngIf="ms.isLoggedIn()">
         <span class="material-symbols-outlined">logout</span>
     </span>
     <a class="logout-button" *ngIf="!ms.isLoggedIn()" href="https://www.hirel.in">
-        <span class="material-symbols-outlined">info</span>
+        <span class="material-symbols-outlined">home</span>
     </a>
 </header>

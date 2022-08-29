@@ -12,4 +12,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  logoClick() {
+    console.log("clicked")
+    window.location.href = "https://www.hirel.in"
+  }
+
 }
