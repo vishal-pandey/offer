@@ -110,29 +110,29 @@ export class OfferComponent implements OnInit {
 
     this.offerLetterForm.get('ctcAnnual')?.valueChanges.subscribe((val) => {
       let ctcAnnual = parseInt(val)
-      let ctcMontly = ctcAnnual/12
+      let ctcMontly = ctcAnnual/12 | 0
       
       this.offerLetterForm.get('totalSalaryAnnual')?.setValue(ctcAnnual)
       this.offerLetterForm.get('grandTotalSalary')?.setValue(ctcAnnual)
       this.offerLetterForm.get('totalSalaryMonthly')?.setValue(ctcMontly)
 
-      this.offerLetterForm.get('basicSalaryAnnual')?.setValue(ctcAnnual * 0.6)
-      this.offerLetterForm.get('basicSalaryMonthly')?.setValue(ctcMontly * 0.6)
+      this.offerLetterForm.get('basicSalaryAnnual')?.setValue(ctcAnnual * 0.6 | 0)
+      this.offerLetterForm.get('basicSalaryMonthly')?.setValue(ctcMontly * 0.6 | 0)
 
-      this.offerLetterForm.get('hraSalaryAnnual')?.setValue(ctcAnnual * 0.3)
-      this.offerLetterForm.get('hraSalaryMonthly')?.setValue(ctcMontly * 0.3)
+      this.offerLetterForm.get('hraSalaryAnnual')?.setValue(ctcAnnual * 0.3 | 0)
+      this.offerLetterForm.get('hraSalaryMonthly')?.setValue(ctcMontly * 0.3 | 0)
 
-      this.offerLetterForm.get('taSalaryAnnual')?.setValue(ctcAnnual * 0.01)
-      this.offerLetterForm.get('taSalaryMonthly')?.setValue(ctcMontly * 0.01)
+      this.offerLetterForm.get('taSalaryAnnual')?.setValue(ctcAnnual * 0.01 | 0)
+      this.offerLetterForm.get('taSalaryMonthly')?.setValue(ctcMontly * 0.01 | 0)
 
-      this.offerLetterForm.get('maSalaryAnnual')?.setValue(ctcAnnual * 0.008)
-      this.offerLetterForm.get('maSalaryMonthly')?.setValue(ctcMontly * 0.008)
+      this.offerLetterForm.get('maSalaryAnnual')?.setValue(ctcAnnual * 0.008 | 0)
+      this.offerLetterForm.get('maSalaryMonthly')?.setValue(ctcMontly * 0.008 | 0)
 
-      this.offerLetterForm.get('communicationSalaryAnnual')?.setValue(ctcAnnual * 0.069)
-      this.offerLetterForm.get('communicationSalaryMonthly')?.setValue(ctcMontly * 0.069)
+      this.offerLetterForm.get('communicationSalaryAnnual')?.setValue(ctcAnnual * 0.069 | 0)
+      this.offerLetterForm.get('communicationSalaryMonthly')?.setValue(ctcMontly * 0.069 | 0)
 
-      this.offerLetterForm.get('pfSalaryAnnual')?.setValue(ctcAnnual * 0.012)
-      this.offerLetterForm.get('pfSalaryMonthly')?.setValue(ctcMontly * 0.012)
+      this.offerLetterForm.get('pfSalaryAnnual')?.setValue(ctcAnnual * 0.012 | 0)
+      this.offerLetterForm.get('pfSalaryMonthly')?.setValue(ctcMontly * 0.012 | 0)
 
       
 
